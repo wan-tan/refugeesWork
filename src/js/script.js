@@ -14,6 +14,9 @@ new Vue({
     ]
   },
   methods: {
+    expandPost: function () {
+      console.log(this)
+    },
     humanizeURL: function (url) {
       return url
         .replace(/^https?:\/\//, '')
@@ -25,8 +28,11 @@ new Vue({
   },
   filters: {
     truncate: function (string, value) {
-      return string.substring(0, value) + '...'
+      var output = string.substring(0, value)
+      if (string.length >= value) {
+        output += '...'
+      }
+      return output
     }
-
   }
 })
