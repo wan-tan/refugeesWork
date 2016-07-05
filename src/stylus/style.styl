@@ -1,0 +1,160 @@
+// ------------------------------------------
+// VARIABLES
+// ------------------------------------------
+
+// COLORS
+$header-font-color = #888
+$color1 = #086375
+$color2 = #1DD3B0
+$color3 = #35012C
+$color4 = #AFFC41
+$color5 = #B2FF9E
+
+
+// SIZES
+$nav-height = 30px
+
+// ------------------------------------------
+//  MIXINS
+// ------------------------------------------
+media_queries = {
+  mobile  : "only screen and (max-width: 600px)",
+  tablet  : "only screen and (min-width: 601px) and (max-width: 800px)",
+  desktop : "only screen and (min-width: 801px)"
+}
+
+for_breakpoint(breakpoints)
+  conditions = ()
+  for breakpoint in breakpoints
+    push(conditions, media_queries[breakpoint])
+  conditions = join(", ", conditions)
+  @media conditions
+    {block}
+
+
+// ------------------------------------------
+// GENERAL
+// ------------------------------------------
+
+html, body
+  margin 0
+  padding 0
+  background #eee
+
+html, body, h1, h2, h3, h4, h5, a, p, li, b, input, textarea, label, a
+  font-family "Maven Pro"
+  
+div, input, textarea, li
+  box-sizing border-box
+
+h1
+  font-size 2em
+  color $header-font-color
+  
+
+
+// ------------------------------------------
+// GENERAL
+// ------------------------------------------
+
+
+header
+  background $color3
+  position relative
+  
+  nav, #logo
+    display inline-block
+    
+  
+  #logo 
+    font-size 1.5em
+    color #fff
+    padding ($nav-height/2)
+    font-family "raleway"
+    .work
+      font-weight bold
+      color $color2
+    
+  nav 
+    float right
+    position absolute
+    top 50%
+    right 0
+    transform translate(0%, -50%)
+    ul 
+      margin 0
+      li 
+        list-style none
+        display inline
+        padding 20px
+        a
+          text-decoration none
+          color #eee
+          text-transform uppercase
+          font-weight bold
+    .signin a
+      background red
+      border-radius 20px
+      padding 3px 10px 6px 10px
+// ------------------------------------------
+// JOBS
+// ------------------------------------------
+
+#filters
+  height 100vh
+  width 20vw
+  background $color1
+  float left
+  padding 30px 25px
+  color #fff
+
+  +for_breakpoint(mobile tablet)
+    width 100%
+    
+  .search
+    padding 7px 10px
+    font-size 1em
+    border-radius 3px
+    border 0
+    width 100%
+    
+#job-board 
+  margin 0
+  padding 0
+  float left
+  width 80vw
+  +for_breakpoint(mobile tablet)
+    width 100vw
+
+  .job-post
+    list-style none
+    float left
+    background #fff
+    border-bottom 1px solid #eee
+    border-right 1px solid  #eee
+    width 50%
+    padding 10px 15px 25px 15px
+    
+    +for_breakpoint(mobile tablet)
+      width 100%
+    
+  .title
+    margin 5px 0 0px 0
+    
+  .description
+    padding 10px 0 12px 0
+    font-size .9em
+    line-height 1.5em
+
+  // Optical fix for tags (probably because of colour contrasts)
+  .tag
+    padding 1px 9px 3px 9px
+    font-size .9em
+
+.tag
+  display inline
+  background $color2
+  color #000
+  margin 0 7px 0 -3px
+  padding 2px 9px 2px 9px
+  border-radius 30px
